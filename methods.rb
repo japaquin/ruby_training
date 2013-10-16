@@ -10,7 +10,7 @@ def return_two_arguments (num1 = 10, num2 = 10)
 	return [add,sub]  # return an array of the two results
 end
 
-welcome("Julian")
+welcome("Jay")
 
 welcome
 
