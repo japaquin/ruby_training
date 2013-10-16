@@ -11,7 +11,7 @@ def return_two_arguments (num1 = 10, num2 = 10)
 end
 
 def write_lines_on_chalkboard (line = "I will never ditch another Ruby class again.", num_lines = 100)
-	return (line+"\n")*num_lines  # the splat will recurrsivly create and append the number of lines specified.  * is an operator in the string class
+	return "<on_chalkboard>\n"+((line+"\n")*num_lines)+"</on_chalkboard>"  # the splat will recurrsivly create and append the number of lines specified.  * is an operator in the string class
 end
 
 welcome("Jay")
