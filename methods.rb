@@ -29,10 +29,26 @@ puts sub
 #puts write_lines_on_chalkboard
 
 class ClassNameMustBeginfWithCapitolLetterDotUseCamelCase
-	
-	def set_my_variable(argument)
+	attr_reader:name_one  # the equivilent is 
+	#def name 
+		#@name 
+	#end
+
+	attr_writer:name_one  # the equivilent is 
+	#def name=(value)
+		#@name  = value
+	#end
+
+	attr_accessor:name_both #does both the reader writer functionality for the attribute
+
+	def set_my_variable(argument)  #common set proceedure
 		@my_variable = argument #instance variable
 	end
+	
+	def my_variable=argument  #syntactic sugar set proceedure. unique to ruby.  can be written as my_variable=(argument) also.
+		@my_variable = argument + " - method used was my_variable= as the name of the def" #instance variable
+	end
+	
 	def first_method
 		puts "I have class!"
 		puts @my_variable
@@ -44,5 +60,7 @@ my_class.set_my_variable("Yummy instance variables.")
 my_class.first_method
 
 my_class2 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new
-my_class2.set_my_variable("Yummy second instance variable.")
+my_class2.my_variable = "Yummy second instance variable."
 my_class2.first_method
+
+#this is a new comment
