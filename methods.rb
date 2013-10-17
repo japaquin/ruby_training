@@ -26,4 +26,23 @@ add, sub = return_two_arguments( 10, 4 )
 puts add
 puts sub
 
-puts write_lines_on_chalkboard
+#puts write_lines_on_chalkboard
+
+class ClassNameMustBeginfWithCapitolLetterDotUseCamelCase
+	
+	def set_my_variable(argument)
+		@my_variable = argument #instance variable
+	end
+	def first_method
+		puts "I have class!"
+		puts @my_variable
+	end
+end
+
+my_class = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new
+my_class.set_my_variable("Yummy instance variables.")
+my_class.first_method
+
+my_class2 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new
+my_class2.set_my_variable("Yummy second instance variable.")
+my_class2.first_method
