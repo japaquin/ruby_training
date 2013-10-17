@@ -33,11 +33,18 @@ class ClassNameMustBeginfWithCapitolLetterDotUseCamelCase
 	#def name 
 		#@name 
 	#end
+	def set_name_one()   #  we have to write the set because attr_reader only lets you read the attribute
+		@name_one = "ONEoneONE" #instance variable
+	end
 
-	attr_writer:name_one  # the equivilent is 
+	attr_writer:name_two  # the equivilent is 
 	#def name=(value)
 		#@name  = value
 	#end
+	def name_two #  we have to write the return because attr_writer only lets you set the attribute
+		"the name two is #{@name_two}."
+	end
+	
 
 	attr_accessor:name_both #does both the reader writer functionality for the attribute
 
@@ -62,5 +69,16 @@ my_class.first_method
 my_class2 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new
 my_class2.my_variable = "Yummy second instance variable."
 my_class2.first_method
+
+my_class3 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new
+puts my_class3.name_one
+my_class3.name_two = "name2"
+puts my_class3.name_two
+my_class3.name_both = "both"
+puts my_class3.name_both
+my_class3.first_method
+my_class3.set_name_one
+puts my_class3.name_one + " - 1"
+
 
 #this is a new comment
