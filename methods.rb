@@ -28,7 +28,11 @@ puts sub
 
 #puts write_lines_on_chalkboard
 
-class ClassNameMustBeginfWithCapitolLetterDotUseCamelCase
+class MyClass # Class Names Must Begin With a Capitol Letter. Use Camel Case
+	
+	@@enum = ['option_one','option_two','option_three','option_four'] #enum class variable
+	@@this_classes_instances_created = []
+	
 	attr_reader:name_one  # the equivilent is 
 	#def name 
 		#@name 
@@ -42,7 +46,7 @@ class ClassNameMustBeginfWithCapitolLetterDotUseCamelCase
 		#@name  = value
 	#end
 	def name_two #  we have to write the return because attr_writer only lets you set the attribute
-		"the name two is #{@name_two}."
+		"name two is #{@name_two}."
 	end
 	
 
@@ -52,16 +56,34 @@ class ClassNameMustBeginfWithCapitolLetterDotUseCamelCase
 	def initialize(start_up_value, arbitrary_value = "something")
 		@name_two = "name_two_default_value" #instance variable
 		puts start_up_value + " - " + arbitrary_value
+		@@this_classes_instances_created << self
+	end
+	
+	def self.this_classes_instances_created  #  reader method for this_classes_instances_created
+		@@this_classes_instances_created
+	end
+	def self.this_classes_instances_created=(array=[])  #  writer method for this_classes_instances_created
+		@@this_classes_instances_created = array
+	end
+	
+	
+	def self.create_me(start_up_value)  # be good for creating a singleton?
+		myself = self.new(start_up_value)
+		return myself
+	end
+	
+	def self.my_enumeration
+		@@enum  #returns the enum class variable
 	end
 	
 
 	def set_my_variable(argument)  #common set proceedure
 		@my_variable = argument #instance variable
 	end
-	
 	def my_variable=argument  #syntactic sugar set proceedure. unique to ruby.  can be written as my_variable=(argument) also.
 		@my_variable = argument + " - method used was my_variable= as the name of the def" #instance variable
 	end
+	
 	
 	def first_method
 		puts "I have class!"
@@ -69,15 +91,15 @@ class ClassNameMustBeginfWithCapitolLetterDotUseCamelCase
 	end
 end
 
-my_class = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new("my_class_instance")
+my_class = MyClass.new("my_class_instance")
 my_class.set_my_variable("Yummy instance variables.")
 my_class.first_method
 
-my_class2 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new("my_class2_instance")
+my_class2 = MyClass.new("my_class2_instance")
 my_class2.my_variable = "Yummy second instance variable."
 my_class2.first_method
 
-my_class3 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new("my_class3_instance")
+my_class3 = MyClass.new("my_class3_instance")
 puts my_class3.name_one
 puts my_class3.name_two
 my_class3.name_two = "name2"
@@ -87,6 +109,14 @@ puts my_class3.name_both
 my_class3.first_method
 my_class3.set_name_one
 puts my_class3.name_one + " - 1"
+
+puts MyClass.my_enumeration.inspect
+puts MyClass.this_classes_instances_created.inspect
+MyClass.this_classes_instances_created = ["test","testing"]
+puts MyClass.this_classes_instances_created.inspect
+
+my_class4 = MyClass.create_me("my_class4_instance")
+puts my_class3.name_two
 
 
 #this is a new comment
