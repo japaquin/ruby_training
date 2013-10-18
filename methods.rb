@@ -47,6 +47,13 @@ class ClassNameMustBeginfWithCapitolLetterDotUseCamelCase
 	
 
 	attr_accessor:name_both #does both the reader writer functionality for the attribute
+	
+	
+	def initialize(start_up_value, arbitrary_value = "something")
+		@name_two = "name_two_default_value" #instance variable
+		puts start_up_value + " - " + arbitrary_value
+	end
+	
 
 	def set_my_variable(argument)  #common set proceedure
 		@my_variable = argument #instance variable
@@ -62,16 +69,17 @@ class ClassNameMustBeginfWithCapitolLetterDotUseCamelCase
 	end
 end
 
-my_class = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new
+my_class = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new("my_class_instance")
 my_class.set_my_variable("Yummy instance variables.")
 my_class.first_method
 
-my_class2 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new
+my_class2 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new("my_class2_instance")
 my_class2.my_variable = "Yummy second instance variable."
 my_class2.first_method
 
-my_class3 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new
+my_class3 = ClassNameMustBeginfWithCapitolLetterDotUseCamelCase.new("my_class3_instance")
 puts my_class3.name_one
+puts my_class3.name_two
 my_class3.name_two = "name2"
 puts my_class3.name_two
 my_class3.name_both = "both"
