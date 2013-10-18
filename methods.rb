@@ -30,6 +30,8 @@ puts sub
 
 class MyClass # Class Names Must Begin With a Capitol Letter. Use Camel Case
 	
+	# these are class varibales and unlike block vaiables (attr_reader:name_one for instance), 
+	# you'll have to create reader and writer functions to read and set them
 	@@enum = ['option_one','option_two','option_three','option_four'] #enum class variable
 	@@this_classes_instances_created = []
 	
@@ -59,12 +61,14 @@ class MyClass # Class Names Must Begin With a Capitol Letter. Use Camel Case
 		@@this_classes_instances_created << self
 	end
 	
+	# this_classes_instances_created reader and writer methods
 	def self.this_classes_instances_created  #  reader method for this_classes_instances_created
 		@@this_classes_instances_created
 	end
 	def self.this_classes_instances_created=(array=[])  #  writer method for this_classes_instances_created
 		@@this_classes_instances_created = array
 	end
+	# this_classes_instances_created reader and writer methods
 	
 	
 	def self.create_me(start_up_value)  # be good for creating a singleton?
@@ -117,6 +121,101 @@ puts MyClass.this_classes_instances_created.inspect
 
 my_class4 = MyClass.create_me("my_class4_instance")
 puts my_class3.name_two
+
+
+
+
+class Animal
+  attr_accessor :name
+  attr_writer :color
+  attr_reader :legs, :arms
+
+  @@species = ['cat', 'cow', 'dog', 'duck', 'horse', 'pig']
+  @@current_animals = []
+  
+  def self.species
+    @@species
+  end
+  
+  def self.species=(array=[])
+    @@species = array
+  end
+  
+  def self.current_animals
+    @@current_animals
+  end
+  
+  def self.create_with_attributes(noise, color)
+    animal = self.new(noise)
+    animal.color = color
+    return animal
+  end
+  
+  def initialize(noise, legs=4, arms=0)
+    @noise = noise
+    @legs = legs
+    @arms = arms
+    @@current_animals << self
+    puts "A new animal has been instantiated."
+  end
+  
+  def noise=(noise)
+    @noise = noise
+  end
+  
+  def noise
+    @noise
+  end
+  
+  def color
+    "The color is #{@color}."
+  end
+end
+
+
+class Cow < Animal  # Cow Inherits Animal.  Only one level of inheritance is supported in ruby
+	
+	#Overriding.  Just name this local def the same as the def you want to override
+	def color
+		"The cow's color is #{@color}"
+	end
+	# In fact, this method will override our override above because its the last def.  Ruby won't complain, something to watch out for.
+	def color
+		"The booming cow's color is #{@color}"
+	end
+	
+end
+
+
+class Pig < Animal
+	def noise
+		#"Hello"
+		#  super #this is a method that calls the super class's method for the noise method
+		#   now going to caapture the return and return it from here
+		parent_noise = super
+		return "Hello and also #{parent_noise}"
+	end
+end
+
+wilbur = Pig.new("Oink!")
+puts wilbur.noise
+
+maisie = Cow.create_with_attributes("Moo!","Yellow")
+puts maisie.noise
+puts maisie.class
+puts maisie.color
+
+x = [1,2,3]
+puts x.to_s
+
+#now override the ruby library behaviour and re-write the to_s behaviour
+class Array
+	def to_s
+		self.join(' - ')
+	end
+end
+# see how it works now, after the override
+puts x.to_s
 
 
 #this is a new comment
